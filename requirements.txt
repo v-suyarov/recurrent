@@ -1,0 +1,5 @@
+argostranslate~=1.9.6
+python-dateutil~=2.9.0.post0
+recurrent~=0.4.0
+parsedatetime~=2.6
+setuptools~=65.5.1
