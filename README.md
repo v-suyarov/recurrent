@@ -1,3 +1,24 @@
+# Поддержка русского языка
+
+Библиотека поддерживает русский язык благодаря классу `RecurringEventAuto`, 
+который автоматически определяет язык строки и выполняет перевод с русского 
+на английский перед обработкой. Для перевода используется 
+библиотека [Argos Translate](https://github.com/argosopentech/argos-translate), 
+которая позволяет эффективно выполнять машинный перевод текста на основе 
+нейронных моделей.
+
+### Пример использования на русском:
+
+```python
+import datetime
+from recurrent.recurrent_ru.recurring_event_auto import RecurringEventAuto
+
+r = RecurringEventAuto(now_date=datetime.datetime(2025, 1, 1))
+print(r.parse("4 марта в 9 утра"))
+# -> datetime.datetime(2025, 3, 4, 9, 0)
+print(r.parse("March 4th at 9am"))
+# -> datetime.datetime(2025, 3, 4, 9, 0)
+
 # Recurrent
 Recurrent is a python library for natural language parsing and formatting of dates and recurring
 events. It turns strings like "every tuesday and thurs until next month"
