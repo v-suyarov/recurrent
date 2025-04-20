@@ -34,7 +34,9 @@ class ParseTestRu(unittest.TestCase):
         self.assertIs(ret, None)
 
     def test_rrule_string(self):
-        string = 'каждый день начиная со 2 февраля'
+        string = 'начиная со 2 февраля, каждый день'
+        # переведется как "Since February 2, every day",
+        # но recurrent не обработает этот запрос, как бы хотелось
         date = RecurringEventAuto(NOW)
         date.parse(string)
         expected1 = """DTSTART:20100202\nRRULE:FREQ=DAILY;INTERVAL=1"""
