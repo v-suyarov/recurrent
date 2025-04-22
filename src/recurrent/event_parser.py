@@ -3,6 +3,9 @@ import datetime
 import logging
 import sys
 import calendar
+
+from recurrent.translator import is_ru, WordByWordTranslator
+
 #import traceback
 
 try:
@@ -147,6 +150,7 @@ class RecurringEvent(object):
         self.preferred_time_range = preferred_time_range
         self.pdt = parsedatetime.Calendar(constants=parse_constants)
         self._reset()
+        self.tr = WordByWordTranslator()
         
         if parse_constants and parse_constants.use24:
             # the 24hr clock will always have this preferred time
@@ -242,6 +246,8 @@ class RecurringEvent(object):
         # returns a rrule string if it is a recurring date, a datetime.datetime
         # if it is a non-recurring date, and None if it is neither.
         self._reset()
+        if is_ru(s):
+            s = self.tr.translate_text(s)
         if not s:
             return None
         s = normalize(s)
